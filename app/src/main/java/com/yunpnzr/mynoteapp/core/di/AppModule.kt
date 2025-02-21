@@ -10,6 +10,7 @@ import com.yunpnzr.mynoteapp.core.data.usecase.LocationUseCaseImpl
 import com.yunpnzr.mynoteapp.core.source.local.db.NoteDatabase
 import com.yunpnzr.mynoteapp.core.source.local.pref.LocationPreference
 import com.yunpnzr.mynoteapp.core.source.local.pref.LocationPreferenceImpl
+import com.yunpnzr.mynoteapp.core.source.remote.service.ApiConfig
 import com.yunpnzr.mynoteapp.presentation.main.MainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.Module
@@ -17,6 +18,16 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 object AppModule {
+
+    private val networkModule = module {
+        single {
+            ApiConfig()
+        }
+        single {
+            get<ApiConfig>().getApiService()
+        }
+    }
+
     private val localModule = module {
         single {
             NoteDatabase.getDatabase(androidContext())
@@ -59,6 +70,7 @@ object AppModule {
     }
 
     val module: List<Module> = listOf(
+        networkModule,
         localModule,
         dataSourceModule,
         repositoryModule,

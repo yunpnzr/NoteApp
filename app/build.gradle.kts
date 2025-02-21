@@ -78,4 +78,11 @@ dependencies {
     //location
     implementation(libs.location)
 
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson)
+
+    //okhttp
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
 }

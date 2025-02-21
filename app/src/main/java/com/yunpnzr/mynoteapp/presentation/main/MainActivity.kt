@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -11,6 +12,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.yunpnzr.mynoteapp.core.utils.loadCityCode
 import com.yunpnzr.mynoteapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -66,6 +68,13 @@ class MainActivity : AppCompatActivity() {
                     lifecycleScope.launch {
                         viewModel.district.collect { district ->
                             binding.tvLocationMain.text = district
+                            val cityCodeMap = loadCityCode(this@MainActivity)
+                            val cityCode = cityCodeMap[district]
+                            if (cityCode != null) {
+                                Log.d("MainActivity", "City Code: $cityCode")
+                            } else {
+                                Log.d("MainActivity", "City Code not found for $district")
+                            }
                         }
                     }
 
@@ -74,6 +83,8 @@ class MainActivity : AppCompatActivity() {
                             binding.tvLocationSub.text = locationSub
                         }
                     }
+
+
                 }
             }
         } else {

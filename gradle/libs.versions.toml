@@ -22,6 +22,11 @@ koin = "4.0.2"
 #location
 location = "21.0.1"
 
+#okhttp
+okhttp = "4.12.0"
+
+#retrofit
+retrofit = "2.11.0"
 
 #plugins
 ksp = "1.9.24-1.0.20"
@@ -48,6 +53,14 @@ koin = { group = "io.insert-koin", name = "koin-android", version.ref = "koin" }
 
 #location
 location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "location" }
+
+#okhttp
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
+okhttp-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
+
+#retrofit
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
